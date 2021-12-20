@@ -6,12 +6,28 @@
             <input @click="doQuery()" type="submit" value="Cerca">
         </div>
         <div class="results">
-            <ul v-for="(result, i) in results" :key="i">
-                <li>{{result.title}}</li>
-                <li>{{result.original_title}}</li>
-                <li>{{result.original_language}}</li>
-                <li>{{result.vote_average}}</li>
-            </ul>
+            <div class="movies">
+                <h2>Movies</h2>
+                <div class="list">
+                    <ul v-for="(movie, i) in movies" :key="i">
+                        <li>{{movie.title}}</li>
+                        <li>{{movie.original_title}}</li>
+                        <li><img :src="getFlag(movie.original_language)"></li>
+                        <li>{{movie.vote_average}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="series">
+                <h2>Series</h2>
+                <div class="list">
+                    <ul v-for="(serie, i) in series" :key="i">
+                    <li>{{serie.name}}</li>
+                    <li>{{serie.original_name}}</li>
+                    <li><img :src="getFlag(serie.original_language)"></li>
+                    <li>{{serie.vote_average}}</li>
+                </ul>
+                </div>
+            </div>
         </div>
     </main>
 </template>
@@ -22,29 +38,56 @@ export default {
     data(){
         return {
             searchQuery: '',
-            results: null
+            movies: '',
+            series: []
         }
     },
     methods: {
-        doQuery: function(){
-
+        query: function(api, type){
             const self = this;
             const axios = require('axios');
 
-            axios.get('https://api.themoviedb.org/3/search/movie', {
+            axios.get(api, {
                 params: {
                     api_key: 'd299e29d3e9fc17a1f45092e37356684',
                     language: 'it-IT',
-                    query: this.searchQuery
+                    query: self.searchQuery
 
                 }
             })
             .then(function (response) {
-                self.results = [...response.data.results]
+                if (type == 'movie'){
+                    console.log(response.data.results)
+                    self.movies = [...response.data.results]
+                } else if (type == 'serie'){
+                    self.series = [...response.data.results]
+                }
             })
             .catch(function (error) {
                 console.log(error);
-            })
+            })  
+
+            
+        },
+        doQuery: function(){
+            this.query('https://api.themoviedb.org/3/search/movie', 'movie');
+            this.query('https://api.themoviedb.org/3/search/tv', 'serie');
+            
+            
+        },
+        getFlag: function(lan){
+            switch (lan) {
+                case 'it':
+                    return 'https://flagcdn.com/w40/it.png';
+                case 'es':
+                    return 'https://flagcdn.com/w40/es.png';
+                case 'en':
+                    return 'https://flagcdn.com/w40/gb-eng.png';
+                case 'fr':
+                    return 'https://flagcdn.com/w40/fr.png';
+                default:
+                    return 'https://upload.wikimedia.org/wikipedia/commons/8/87/Bandiera_della_Pace.png';
+            }
         }
     }
 }
@@ -52,12 +95,16 @@ export default {
 
 <style lang="scss" scoped>
 
-    .results {
+    .list{
         display: flex;
         flex-wrap: wrap;
 
         ul {
             margin: 20px;
+
+            img {
+                width: 40px;
+            }
         }
     }
 
