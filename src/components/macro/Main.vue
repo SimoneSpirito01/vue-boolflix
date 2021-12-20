@@ -13,7 +13,8 @@
                         <li>{{movie.title}}</li>
                         <li>{{movie.original_title}}</li>
                         <li><img :src="getFlag(movie.original_language)"></li>
-                        <li>{{movie.vote_average}}</li>
+                        <li><i v-for="(star, i) in Math.ceil(movie.vote_average / 2)" :key="i" class="fas fa-star"></i></li>
+                        <li><img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="movie.tile"></li>
                     </ul>
                 </div>
             </div>
@@ -21,11 +22,12 @@
                 <h2>Series</h2>
                 <div class="list">
                     <ul v-for="(serie, i) in series" :key="i">
-                    <li>{{serie.name}}</li>
-                    <li>{{serie.original_name}}</li>
-                    <li><img :src="getFlag(serie.original_language)"></li>
-                    <li>{{serie.vote_average}}</li>
-                </ul>
+                        <li>{{serie.name}}</li>
+                        <li>{{serie.original_name}}</li>
+                        <li><img :src="getFlag(serie.original_language)"></li>
+                        <li><i v-for="(star, i) in Math.ceil(serie.vote_average / 2)" :key="i" class="fas fa-star"></i></li>
+                        <li><img :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}`" :alt="serie.name"></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -57,7 +59,6 @@ export default {
             })
             .then(function (response) {
                 if (type == 'movie'){
-                    console.log(response.data.results)
                     self.movies = [...response.data.results]
                 } else if (type == 'serie'){
                     self.series = [...response.data.results]
@@ -88,7 +89,10 @@ export default {
                 default:
                     return 'https://upload.wikimedia.org/wikipedia/commons/8/87/Bandiera_della_Pace.png';
             }
-        }
+        },
+        // getStars: function(vote){
+            
+        // }
     }
 }
 </script>
