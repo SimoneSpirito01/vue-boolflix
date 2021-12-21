@@ -10,15 +10,27 @@
             <p><strong>Titolo:</strong> {{content.title}}</p>
             <p v-if="content.title != content.original_title"><strong>Titolo originale:</strong> {{content.original_title}}</p>
             <p v-if="content.vote_average != ''"><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></p>
+            <p v-if="content.cast != undefined">
+                <strong>Cast: </strong>
+                <ul class="list-unstyled">
+                    <li v-for="(actor, i) in content.cast" :key="i"> - {{actor}}</li>
+                </ul>
+            </p>
             <p v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</p>
-            <p><img :src="getFlag(content.original_language)" alt="flag"> {{content.original_language}}</p>
+            <p class="mt-3"><img class="me-1" :src="getFlag(content.original_language)" alt="flag"> {{content.original_language}}</p>
         </div>
         <div v-else class="info">
             <p><strong>Titolo:</strong> {{content.name}}</p>
             <p v-if="content.name != content.original_name"><strong>Titolo originale:</strong> {{content.original_name}}</p>
             <p v-if="content.vote_average != ''"><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></p>
+            <p v-if="content.cast != undefined">
+                <strong>Cast: </strong>
+                <ul class="list-unstyled">
+                    <li v-for="(actor, i) in content.cast" :key="i"> - {{actor}}</li>
+                </ul>
+            </p>
             <p v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</p>
-            <p><img :src="getFlag(content.original_language)" alt="flag"> {{content.original_language}}</p>
+            <p class="mt-3"><img class="me-1" :src="getFlag(content.original_language)" alt="flag"> {{content.original_language}}</p>
         </div>
     </div>
 </template>
@@ -31,7 +43,7 @@ export default {
     },
     data(){
         return {
-            hover: false
+            hover: false,
         }
     },
     methods: {
@@ -48,7 +60,10 @@ export default {
                 default:
                     return 'https://upload.wikimedia.org/wikipedia/commons/8/87/Bandiera_della_Pace.png';
             }
-        }
+        },
+    },
+    cumputed: {
+        
     }
 }
 </script>

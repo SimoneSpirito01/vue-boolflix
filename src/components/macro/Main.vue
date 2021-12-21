@@ -1,12 +1,12 @@
 <template>
     <main>
-        <div class="container">
+        <div class="container d-flex justify-content-center">
             <div v-if="dataShared.movies.length > 0 || dataShared.series.length > 0" class="results">
                 <Category title="Movies" :contents="dataShared.movies"/>
                 <Category title="TV series" :contents="dataShared.series"/>
             </div>
             <div v-else-if="dataShared.noResults == false">
-                <h2 class="text-center mt-5">Effettua una ricerca</h2>
+                <h2 class="mt-5">Effettua una ricerca</h2>
             </div>
             <div v-else class="no-results">
                 <p>Nessun risultato per la tua ricerca di "{{dataShared.noResultsQuery}}".</p>
@@ -47,8 +47,7 @@ export default {
     }
 
     .no-results {
-        width: 40%;
-        margin: 90px auto 0;
+        margin: 90px 0;
     }
 
 </style>

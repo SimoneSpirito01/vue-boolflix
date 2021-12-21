@@ -19,6 +19,7 @@ export default {
     },
     methods: {
         query: function(api, type){
+            const self = this;
             const axios = require('axios');
 
             axios.get(api, {
@@ -40,6 +41,7 @@ export default {
                 } else if (type == 'serie'){
                     dataShared.series = [...response.data.results];
                 }
+                self.createCast();
             })
             .catch(function (error) {
                 console.log(error);
@@ -50,6 +52,37 @@ export default {
         doQuery: function(){
             this.query('https://api.themoviedb.org/3/search/movie', 'movie');
             this.query('https://api.themoviedb.org/3/search/tv', 'serie');
+        },
+        createCast() {
+            this.getCast(dataShared.movies, 'movie');
+            this.getCast(dataShared.series, 'tv');
+            
+        },
+        getCast(array, type) {
+
+            array.forEach(element => {
+                const axios = require('axios');
+                let url = `https://api.themoviedb.org/3/${type}/${element.id}/credits`
+                axios.get(url, {
+                    params: {
+                        api_key: 'd299e29d3e9fc17a1f45092e37356684',
+                        language: 'it-IT',
+                    }
+                })
+                .then(function (response) {
+                    console.log(response.data)
+                    let array = [];
+                    for (let i = 0; i < 5; i++){
+                        console.log(response.data.cast[i].original_name)
+                        array.push(response.data.cast[i].original_name)
+                    }
+                    element.cast = [...array];
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+            });
+
         }
     }
 }
