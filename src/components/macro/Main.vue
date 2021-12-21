@@ -1,6 +1,7 @@
 <template>
     <main>
-        <div class="container d-flex justify-content-center">
+        <div class="container">
+            <Filters/>
             <div v-if="dataShared.movies.length > 0 || dataShared.series.length > 0" class="results">
                 <Category title="Movies" :contents="dataShared.movies"/>
                 <Category title="TV series" :contents="dataShared.series"/>
@@ -21,12 +22,14 @@
 </template>
 
 <script>
+import Filters from '../sections/Filters.vue'
 import Category from '../commons/Category'
 import dataShared from '../../share/dataShared'
 
 export default {
     name: 'Main',
     components: {
+        Filters,
         Category
     },
     data(){

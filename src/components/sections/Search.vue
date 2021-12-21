@@ -18,7 +18,7 @@ export default {
         }
     },
     methods: {
-        query: function(api, type){
+        query(api, type){
             const self = this;
             const axios = require('axios');
 
@@ -49,7 +49,7 @@ export default {
 
             
         },
-        doQuery: function(){
+        doQuery(){
             this.query('https://api.themoviedb.org/3/search/movie', 'movie');
             this.query('https://api.themoviedb.org/3/search/tv', 'serie');
         },
@@ -59,7 +59,6 @@ export default {
             
         },
         getCast(array, type) {
-
             array.forEach(element => {
                 const axios = require('axios');
                 let url = `https://api.themoviedb.org/3/${type}/${element.id}/credits`
@@ -82,8 +81,7 @@ export default {
                     console.log(error);
                 })
             });
-
-        }
+        },
     }
 }
 </script>

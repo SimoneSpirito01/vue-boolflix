@@ -5,5 +5,6 @@ export default vue.observable({
     noResults: false,
     noResultsQuery: '',
     movies: [],
-    series: []
+    series: [],
+    genres: []
 });

@@ -21,11 +21,11 @@ export default {
 <style lang="scss" scoped>
 
     header {
-        height: 70px;
+        height: 85px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 20px;
+        padding: 0px 60px;
     }
 
 </style>
