@@ -19,6 +19,7 @@ export default {
     },
     methods: {
         query(api, type){
+            dataShared.activeFilter = '';
             const self = this;
             const axios = require('axios');
 
@@ -42,6 +43,7 @@ export default {
                     dataShared.series = [...response.data.results];
                 }
                 self.createCast();
+                self.createFilters()
             })
             .catch(function (error) {
                 console.log(error);
@@ -69,11 +71,9 @@ export default {
                     }
                 })
                 .then(function (response) {
-                    console.log(response.data)
                     let array = [];
-                    for (let i = 0; i < 5; i++){
-                        console.log(response.data.cast[i].original_name)
-                        array.push(response.data.cast[i].original_name)
+                    for (let i = 0; i < 5 && i < response.data.cast.length; i++){
+                        array.push(response.data.cast[i].name)
                     }
                     element.cast = [...array];
                 })
@@ -82,6 +82,27 @@ export default {
                 })
             });
         },
+        createFilters(){
+            dataShared.movies.forEach(element => {
+                element.genres = [];
+                element.genre_ids.forEach(genre_id => {
+                    dataShared.genres.forEach(elm => {
+                        if (genre_id == elm.id && !(element.genres.includes(elm.name)))element.genres.push(elm.name)
+                })
+                })
+                
+            });
+            dataShared.series.forEach(element => {
+                element.genres = [];
+                element.genre_ids.forEach(genre_id => {
+                    dataShared.genres.forEach(elm => {
+                        if (genre_id == elm.id && !(element.genres.includes(elm.name)))element.genres.push(elm.name)
+                })
+                })
+                
+            });
+        },
+
     }
 }
 </script>

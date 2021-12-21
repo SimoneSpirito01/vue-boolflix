@@ -26,11 +26,9 @@ export default {
     axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=d299e29d3e9fc17a1f45092e37356684&language=it-IT')
     .then(function (response) {
         dataShared.genres = [...response.data.genres]
-        console.log(response);
         axios.get('https://api.themoviedb.org/3/genre/tv/list?api_key=d299e29d3e9fc17a1f45092e37356684&language=it-IT')
         .then(function (response) {
             dataShared.genres.push(...response.data.genres)
-            console.log(response);
             
         })
         .catch(function (error) {
