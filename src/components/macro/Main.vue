@@ -1,7 +1,7 @@
 <template>
     <main>
         <div class="container">
-            <div v-if="dataShared.movies.length > 0" class="results">
+            <div v-if="dataShared.movies.length > 0 || dataShared.series.length > 0" class="results">
                 <Category title="Movies" :contents="dataShared.movies"/>
                 <Category title="TV series" :contents="dataShared.series"/>
             </div>

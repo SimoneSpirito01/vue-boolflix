@@ -1,7 +1,10 @@
 <template>
     <div @mouseover="hover = true" @mouseleave="hover = false" class="mycard">
         <div v-if="hover == false" class="poster">
-            <img :src="`https://image.tmdb.org/t/p/w342/${content.poster_path}`" :alt="content.title">
+            <img v-if="content.poster_path != null" :src="`https://image.tmdb.org/t/p/w342/${content.poster_path}`" :alt="content.title">
+            <div v-else class="d-flex justify-content-center align-items-center h-100" >
+                {{content.title}}{{content.name}}
+            </div>
         </div>
         <div v-else-if="content.title != undefined" class="info">
             <p><strong>Titolo:</strong> {{content.title}}</p>
