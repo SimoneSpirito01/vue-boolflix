@@ -1,9 +1,20 @@
 <template>
     <main>
         <div class="container">
-            <div class="results">
+            <div v-if="dataShared.movies.length > 0" class="results">
                 <Category title="Movies" :contents="dataShared.movies"/>
-                <Category title="Series" :contents="dataShared.series"/>
+                <Category title="TV series" :contents="dataShared.series"/>
+            </div>
+            <div v-else-if="dataShared.noResults == false">
+                <h2 class="text-center mt-5">Effettua una ricerca</h2>
+            </div>
+            <div v-else class="no-results">
+                <p>Nessun risultato per la tua ricerca di "{{dataShared.noResultsQuery}}".</p>
+                <p>Suggerimenti:</p>
+                <ul>
+                    <li>Prova con parole chiave diverse.</li>
+                    <li>Cerchi un film o un programma TV?</li>
+                </ul>
             </div>
         </div>
     </main>
@@ -29,9 +40,15 @@ export default {
 <style lang="scss" scoped>
     
     .results {
+        
         > * {
             margin: 20px 0;
         }
+    }
+
+    .no-results {
+        width: 40%;
+        margin: 90px auto 0;
     }
 
 </style>

@@ -26,14 +26,19 @@ export default {
                     api_key: 'd299e29d3e9fc17a1f45092e37356684',
                     language: 'it-IT',
                     query: dataShared.searchQuery
-
                 }
             })
             .then(function (response) {
+                if (response.data.results.lenght > 0){
+                    dataShared.noResults = false;
+                } else {
+                    dataShared.noResults = true;
+                    dataShared.noResultsQuery = dataShared.searchQuery;
+                }
                 if (type == 'movie'){
-                    dataShared.movies = [...response.data.results]
+                    dataShared.movies = [...response.data.results];
                 } else if (type == 'serie'){
-                    dataShared.series = [...response.data.results]
+                    dataShared.series = [...response.data.results];
                 }
             })
             .catch(function (error) {

@@ -5,16 +5,16 @@
         </div>
         <div v-else-if="content.title != undefined" class="info">
             <p><strong>Titolo:</strong> {{content.title}}</p>
-            <p><strong>Titolo originale:</strong> {{content.original_title}}</p>
-            <p><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></p>
-            <p><strong>Overview:</strong> {{content.overview}}</p>
+            <p v-if="content.title != content.original_title"><strong>Titolo originale:</strong> {{content.original_title}}</p>
+            <p v-if="content.vote_average != ''"><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></p>
+            <p v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</p>
             <p><img :src="getFlag(content.original_language)" alt="flag"> {{content.original_language}}</p>
         </div>
         <div v-else class="info">
             <p><strong>Titolo:</strong> {{content.name}}</p>
-            <p><strong>Titolo originale:</strong> {{content.original_name}}</p>
-            <p><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></p>
-            <p><strong>Overview:</strong> {{content.overview}}</p>
+            <p v-if="content.name != content.original_name"><strong>Titolo originale:</strong> {{content.original_name}}</p>
+            <p v-if="content.vote_average != ''"><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></p>
+            <p v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</p>
             <p><img :src="getFlag(content.original_language)" alt="flag"> {{content.original_language}}</p>
         </div>
     </div>
