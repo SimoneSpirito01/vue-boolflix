@@ -5,8 +5,8 @@
             <div v-if="dataShared.navbar[0].active || dataShared.navbar[1].active || dataShared.navbar[2].active || dataShared.searchedQuery != ''">
                 <Filters/>
             </div>
-            <div v-if="dataShared.searchedQuery == '' || dataShared.navbar[0].active">
-                <h2 v-if="dataShared.navbar[0].active || dataShared.navbar[1].active || dataShared.navbar[2].active" class="mt-3 mb-5">Daily Trends</h2>
+            <div v-if="dataShared.searchedQuery == '' || dataShared.navbar[0].active" class="trends">
+                <h2 v-if="dataShared.navbar[0].active || dataShared.navbar[1].active || dataShared.navbar[2].active" class="mt-3 mb-5">Daily Trends:</h2>
                 <div v-if="dataShared.navbar[0].active">
                     <Category title="Movies" :contents="dataShared.dailyMovies"/>
                     <Category title="TV series" :contents="dataShared.dailySeries"/>
@@ -90,13 +90,6 @@ export default {
     
     main {
         margin-top: 85px;
-
-        .results {
-        
-            > * {
-                margin: 20px 0;
-            }
-        }
 
         .no-results {
             margin: 90px auto;

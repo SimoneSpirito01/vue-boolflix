@@ -61,9 +61,15 @@ export default {
 
         .right {
             .bell {
+                cursor: pointer;
+                
                 svg {
                     font-size: 25px;
                 }
+            }
+
+            .account {
+                cursor: pointer;
             }
         }
     }
