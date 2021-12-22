@@ -2,13 +2,16 @@
     <div @mouseover="hover = true" @mouseleave="hover = false" class="mycard">
 
         <div v-if="hover == false" class="poster">
+
             <img v-if="content.poster_path != null" :src="`https://image.tmdb.org/t/p/w342/${content.poster_path}`" :alt="content.title">
             <div v-else class="d-flex justify-content-center align-items-center h-100" >
                 {{content.title}}{{content.name}}
             </div>
         </div>
 
+
         <div v-else-if="content.title != undefined" class="info">
+
             <div><strong>Titolo:</strong> {{content.title}}</div>
             <div v-if="content.title != content.original_title"><strong>Titolo originale:</strong> {{content.original_title}}</div>
             <div v-if="content.vote_average != ''"><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></div>
@@ -26,9 +29,11 @@
             </div>
             <div v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</div>
             <div class="text-uppercase d-flex align-items-center"><span class="me-2 fs-3" v-html="getFlag(content.original_language)"></span>{{content.original_language}}</div>
+
         </div>
 
         <div v-else class="info">
+
             <div><strong>Titolo:</strong> {{content.name}}</div>
             <div v-if="content.name != content.original_name"><strong>Titolo originale:</strong> {{content.original_name}}</div>
             <div v-if="content.vote_average != ''"><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></div>
@@ -46,6 +51,7 @@
             </div>
             <div v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</div>
             <div class="text-uppercase d-flex align-items-center"><span class="me-2 fs-3" v-html="getFlag(content.original_language)"></span>{{content.original_language}}</div>
+            
         </div>
 
     </div>

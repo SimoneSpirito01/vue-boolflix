@@ -24,16 +24,29 @@ export default {
     computed: {
         getFilters(){
             let array = [];
-            dataShared.movies.forEach(element => {
-                element.genres.forEach(genre => {
-                    if (!(array.includes(genre))) array.push(genre)
-                })
-            });
-            dataShared.series.forEach(element => {
-                element.genres.forEach(genre => {
-                    if (!(array.includes(genre))) array.push(genre)
-                })
-            });
+            if (dataShared.navbar[0].active && dataShared.dailyMovies.length > 0 && dataShared.dailySeries.length > 0) {
+                dataShared.dailyMovies.forEach(element => {
+                    element.genres.forEach(genre => {
+                        if (!(array.includes(genre))) array.push(genre)
+                    })
+                });
+                dataShared.dailySeries.forEach(element => {
+                    element.genres.forEach(genre => {
+                        if (!(array.includes(genre))) array.push(genre)
+                    })
+                });
+            } else {
+                dataShared.movies.forEach(element => {
+                    element.genres.forEach(genre => {
+                        if (!(array.includes(genre))) array.push(genre)
+                    })
+                });
+                dataShared.series.forEach(element => {
+                    element.genres.forEach(genre => {
+                        if (!(array.includes(genre))) array.push(genre)
+                    })
+                });
+            }
             return array;
         },
         

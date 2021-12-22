@@ -1,46 +1,33 @@
 <template>
     <nav>
         <ul>
-            <li v-for="(li, i) in navbar" :key="i" @click="liActive(i)" :class="{ active: li.active }">{{li.title}}</li>
+            <li v-for="(li, i) in dataShared.navbar" :key="i" @click="liActive(li); visiblePage(i)" :class="{ active: li.active }">{{li.title}}</li>
         </ul>
     </nav>
 </template>
 
 <script>
+import dataShared from '../../share/dataShared'
+
 export default {
     name: 'Navbar',
     data() {
         return {
-            navbar: [
-                {
-                    title: 'Home',
-                    active: false
-                },
-                {
-                    title: 'Movies',
-                    active: false
-                },
-                {
-                    title: 'TV series',
-                    active: false
-                },
-                {
-                    title: 'Popular',
-                    active: false
-                },
-                {
-                    title: 'Favorites list',
-                    active: false
-                }
-            ]
+            dataShared
         }
     },
     methods: {
         liActive(who){
-            this.navbar.forEach(element => {
+            dataShared.navbar.forEach(element => {
                 element.active = false
             })
-            this.navbar[who].active = true;
+            who.active = true;
+        },
+        visiblePage(who){
+            switch (who.title) {
+                case 'Home':
+
+            }
         }
     }
 }

@@ -2,14 +2,16 @@
     <main>
         <div class="container d-flex flex-column">
             <Filters/>
-            <div v-if="dataShared.movies.length > 0 || dataShared.series.length > 0" class="results">
+            <div v-if="dataShared.navbar[0].active">
+                <h2 class="mt-3 mb-5">Daily Trends</h2>
+                <Category title="Movies" :contents="dataShared.dailyMovies"/>
+                <Category title="TV series" :contents="dataShared.dailySeries"/>
+            </div>
+            <div v-else-if="dataShared.movies.length > 0 || dataShared.series.length > 0" class="results">
                 <Category title="Movies" :contents="dataShared.movies"/>
                 <Category title="TV series" :contents="dataShared.series"/>
             </div>
-            <div v-else-if="dataShared.noResults == false" class="mx-auto">
-                <h2 class="mt-5">Effettua una ricerca</h2>
-            </div>
-            <div v-else class="no-results">
+            <div v-else-if="dataShared.noResults" class="no-results">
                 <p>Nessun risultato per la tua ricerca di "{{dataShared.noResultsQuery}}".</p>
                 <p>Suggerimenti:</p>
                 <ul>
@@ -25,6 +27,7 @@
 import Filters from '../sections/Filters.vue'
 import Category from '../commons/Category'
 import dataShared from '../../share/dataShared'
+import functionsShared from '../../share/functionsShared'
 
 export default {
     name: 'Main',
@@ -34,8 +37,29 @@ export default {
     },
     data(){
         return {
-            dataShared
+            dataShared,
         }
+    },
+    created(){
+        const axios = require('axios');
+        axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key=d299e29d3e9fc17a1f45092e37356684')
+        .then(function (response) {
+            dataShared.dailyMovies = [...response.data.results]
+            axios.get('https://api.themoviedb.org/3/trending/tv/day?api_key=d299e29d3e9fc17a1f45092e37356684')
+                .then(function (response) {
+                    dataShared.dailySeries = [...response.data.results]
+                    functionsShared.getCast(dataShared.dailyMovies, 'movie')
+                    functionsShared.getCast(dataShared.dailySeries, 'tv')
+                    functionsShared.createFilters(dataShared.dailyMovies, dataShared.dailySeries)
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
     }
 }
 </script>

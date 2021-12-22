@@ -6,6 +6,31 @@ export default vue.observable({
     noResultsQuery: '',
     movies: [],
     series: [],
+    dailyMovies: [],
+    dailySeries: [],
     genres: [],
-    activeFilter: ''
+    activeFilter: '',
+    navbar: [
+        {
+            title: 'Home',
+            active: true
+        },
+        {
+            title: 'Movies',
+            active: false
+        },
+        {
+            title: 'TV series',
+            active: false
+        },
+        {
+            title: 'Popular',
+            active: false
+        },
+        {
+            title: 'Favorites list',
+            active: false
+        }
+    ],
+    
 });
