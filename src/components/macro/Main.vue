@@ -1,12 +1,12 @@
 <template>
     <main>
-        <div class="container">
+        <div class="container d-flex flex-column">
             <Filters/>
             <div v-if="dataShared.movies.length > 0 || dataShared.series.length > 0" class="results">
                 <Category title="Movies" :contents="dataShared.movies"/>
                 <Category title="TV series" :contents="dataShared.series"/>
             </div>
-            <div v-else-if="dataShared.noResults == false">
+            <div v-else-if="dataShared.noResults == false" class="mx-auto">
                 <h2 class="mt-5">Effettua una ricerca</h2>
             </div>
             <div v-else class="no-results">
@@ -42,15 +42,19 @@ export default {
 
 <style lang="scss" scoped>
     
-    .results {
-        
-        > * {
-            margin: 20px 0;
-        }
-    }
+    main {
+        margin-top: 85px;
 
-    .no-results {
-        margin: 90px 0;
+        .results {
+        
+            > * {
+                margin: 20px 0;
+            }
+        }
+
+        .no-results {
+            margin: 90px auto;
+        }
     }
 
 </style>

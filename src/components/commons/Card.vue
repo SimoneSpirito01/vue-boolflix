@@ -14,8 +14,8 @@
             <div v-if="content.vote_average != ''"><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></div>
             <div v-if="content.cast != undefined && content.cast.length">
                 <strong>Cast: </strong>
-                <ul class="list-unstyled">
-                    <li v-for="(actor, i) in content.cast" :key="i"> - {{actor}}</li>
+                <ul class="cast">
+                    <li v-for="(actor, i) in content.cast" :key="i">{{actor}}</li>
                 </ul>
             </div>
             <div>
@@ -25,17 +25,17 @@
                 </div>
             </div>
             <div v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</div>
-            <div class="mt-3 text-uppercase"><img class="me-1" :src="getFlag(content.original_language)" alt="flag"> {{content.original_language}}</div>
+            <div class="text-uppercase d-flex align-items-center"><span class="me-2 fs-3" v-html="getFlag(content.original_language)"></span>{{content.original_language}}</div>
         </div>
 
         <div v-else class="info">
             <div><strong>Titolo:</strong> {{content.name}}</div>
             <div v-if="content.name != content.original_name"><strong>Titolo originale:</strong> {{content.original_name}}</div>
             <div v-if="content.vote_average != ''"><strong>Voto:</strong> <i v-for="(star, i) in Math.ceil(content.vote_average / 2)" :key="i" class="fas fa-star"></i></div>
-            <div v-if="content.cast != undefined && content.cast.length != 0">
+            <div v-if="content.cast != undefined && content.cast.length">
                 <strong>Cast: </strong>
-                <ul class="list-unstyled">
-                    <li v-for="(actor, i) in content.cast" :key="i"> - {{actor}}</li>
+                <ul class="cast">
+                    <li v-for="(actor, i) in content.cast" :key="i">{{actor}}</li>
                 </ul>
             </div>
             <div>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</div>
-            <div class="mt-3 text-uppercase"><img class="me-1" :src="getFlag(content.original_language)" alt="flag"> {{content.original_language}}</div>
+            <div class="text-uppercase d-flex align-items-center"><span class="me-2 fs-3" v-html="getFlag(content.original_language)"></span>{{content.original_language}}</div>
         </div>
 
     </div>
@@ -67,15 +67,15 @@ export default {
         getFlag: function(lan){
             switch (lan) {
                 case 'it':
-                    return 'https://flagcdn.com/w40/it.png';
+                    return '&#x1f1ee;&#x1f1f9;';
                 case 'es':
-                    return 'https://flagcdn.com/w40/es.png';
+                    return '&#x1f1ea;&#x1f1f8;';
                 case 'en':
-                    return 'https://flagcdn.com/w40/gb-eng.png';
+                    return '&#x1f3f4;&#xe0067;&#xe0062;&#xe0065;&#xe006e;&#xe0067;&#xe007f;';
                 case 'fr':
-                    return 'https://flagcdn.com/w40/fr.png';
+                    return '&#x1f1eb;&#x1f1f7;';
                 default:
-                    return 'https://upload.wikimedia.org/wikipedia/commons/8/87/Bandiera_della_Pace.png';
+                    return '&#127987;&#8205;&#127752;';
             }
         },
     }
@@ -115,6 +115,13 @@ export default {
 
                 svg {
                     color: #febc00;
+                }
+
+                .cast {
+                    list-style: square inside url('data:image/gif;base64,R0lGODlhBQAKAIABAAAAAP///yH5BAEAAAEALAAAAAAFAAoAAAIIjI+ZwKwPUQEAOw==');
+                    list-style-position: outside;
+                    padding-left: 0.8rem;
+                    margin-bottom: 0;
                 }
             }
         }
