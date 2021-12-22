@@ -2,6 +2,8 @@
     <nav>
         <ul>
             <li v-for="(li, i) in dataShared.navbar" :key="i" @click="liActive(li); visiblePage(i)" :class="{ active: li.active }">{{li.title}}</li>
+            <li>Popular</li>
+            <li>Favorites list</li>
         </ul>
     </nav>
 </template>
@@ -18,10 +20,16 @@ export default {
     },
     methods: {
         liActive(who){
-            dataShared.navbar.forEach(element => {
-                element.active = false
-            })
-            who.active = true;
+            if (who.active) {
+                who.active = false;
+            } else {
+                dataShared.navbar.forEach(element => {
+                    element.active = false
+                })
+                who.active = true;
+            }
+            dataShared.activeFilter = '';
+            
         },
         visiblePage(who){
             switch (who.title) {
@@ -44,6 +52,7 @@ export default {
             li {
                 color: #bdbdbd;
                 margin: 0 10px;
+                cursor: pointer;
 
                 &.active {
                     color: white;

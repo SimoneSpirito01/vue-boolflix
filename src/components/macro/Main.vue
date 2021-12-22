@@ -1,15 +1,37 @@
 <template>
     <main>
         <div class="container d-flex flex-column">
-            <Filters/>
-            <div v-if="dataShared.navbar[0].active">
-                <h2 class="mt-3 mb-5">Daily Trends</h2>
-                <Category title="Movies" :contents="dataShared.dailyMovies"/>
-                <Category title="TV series" :contents="dataShared.dailySeries"/>
+
+            <div v-if="dataShared.navbar[0].active || dataShared.navbar[1].active || dataShared.navbar[2].active || dataShared.searchedQuery != ''">
+                <Filters/>
+            </div>
+            <div v-if="dataShared.searchedQuery == '' || dataShared.navbar[0].active">
+                <h2 v-if="dataShared.navbar[0].active || dataShared.navbar[1].active || dataShared.navbar[2].active" class="mt-3 mb-5">Daily Trends</h2>
+                <div v-if="dataShared.navbar[0].active">
+                    <Category title="Movies" :contents="dataShared.dailyMovies"/>
+                    <Category title="TV series" :contents="dataShared.dailySeries"/>
+                </div>
+                <div v-else-if="dataShared.navbar[1].active">
+                    <Category title="Movies" :contents="dataShared.dailyMovies"/>
+                </div>
+                <div v-else-if="dataShared.navbar[2].active">
+                    <Category title="TV series" :contents="dataShared.dailySeries"/>
+                </div>
+                <div v-else>
+                    <h2 class="text-center mt-5">Effettua una ricerca!</h2>
+                </div>
             </div>
             <div v-else-if="dataShared.movies.length > 0 || dataShared.series.length > 0" class="results">
-                <Category title="Movies" :contents="dataShared.movies"/>
-                <Category title="TV series" :contents="dataShared.series"/>
+                <div v-if="dataShared.navbar[1].active">
+                    <Category title="Movies" :contents="dataShared.movies"/>
+                </div>
+                <div v-else-if="dataShared.navbar[2].active">
+                    <Category title="TV series" :contents="dataShared.series"/>
+                </div>
+                <div v-else>
+                    <Category title="Movies" :contents="dataShared.movies"/>
+                    <Category title="TV series" :contents="dataShared.series"/>
+                </div>
             </div>
             <div v-else-if="dataShared.noResults" class="no-results">
                 <p>Nessun risultato per la tua ricerca di "{{dataShared.noResultsQuery}}".</p>

@@ -25,6 +25,9 @@ export default {
                 element.active = false;
             })
             dataShared.activeFilter = '';
+
+            dataShared.searchedQuery = dataShared.searchQuery;
+
             const self = this;
             const axios = require('axios');
 

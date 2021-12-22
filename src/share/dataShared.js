@@ -2,6 +2,7 @@ import vue from 'vue';
 
 export default vue.observable({
     searchQuery: '',
+    searchedQuery: '',
     noResults: false,
     noResultsQuery: '',
     movies: [],
@@ -23,14 +24,6 @@ export default vue.observable({
             title: 'TV series',
             active: false
         },
-        {
-            title: 'Popular',
-            active: false
-        },
-        {
-            title: 'Favorites list',
-            active: false
-        }
     ],
     
 });
