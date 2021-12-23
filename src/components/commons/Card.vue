@@ -1,5 +1,5 @@
 <template>
-    <div @mouseover="hover = true" @mouseleave="hover = false" class="mycard">
+    <div @mouseover="hoverCard" @mouseleave="leaveCard" class="mycard">
 
         <div v-if="hover == false" class="poster">
 
@@ -67,6 +67,7 @@ export default {
     data(){
         return {
             hover: false,
+            actHover: false
         }
     },
     methods: {
@@ -84,6 +85,18 @@ export default {
                     return '&#127987;&#8205;&#127752;';
             }
         },
+        hoverCard(){
+            if (this.hover == false){
+                this.actHover = true;
+                setTimeout(() => {
+                    if (this.actHover) this.hover = true;
+                }, 400);
+            }
+        },
+        leaveCard(){
+            this.hover = false;
+            this.actHover = false;
+        },
     }
 }
 </script>
@@ -93,6 +106,23 @@ export default {
     .mycard {
         height: 100%;
         cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transition: transform 0.5s, font-size 0.5s, z-index 0.5s, position 0.5s;
+        transition-delay: 0s;
+        border-radius: 10px;
+        background-color: #141414;
+       
+        &:hover {
+            transform: scale(1.5);
+            position: relative;
+            z-index: 10;
+            font-size: 10px;
+            transition-delay: 0.4s;
+
+            .info {
+                font-size: 10px;
+            }
+        }
 
         .poster {
             height: 100%;
@@ -103,17 +133,19 @@ export default {
                 display: block;
                 object-fit: cover;
                 object-position: top;
+                border-radius: 10px;
             }
         }
         .info {
+            width: 85%;
             height: 100%;
-            font-size: 14px;
             overflow-x: auto;
-            padding: 10px;
+            padding: 10px 0;
+            margin: 0 auto;
 
             > div {
                 margin: 0;
-                padding: 5px 0;
+                padding: 5px 5px 5px 0;
 
                 img {
                 width: 40px;

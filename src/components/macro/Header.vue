@@ -43,6 +43,7 @@ export default {
         left: 0;
         right: 0;
         background-color: rgb(20, 20, 20);
+        z-index: 100;
 
         .left, .right {
             display: flex;
