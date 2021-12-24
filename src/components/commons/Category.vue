@@ -54,11 +54,11 @@ export default {
 
         .row {
 
-        .col {
-            max-width: 250px;
-            aspect-ratio: 9/10;
-            margin: 10px 0;
-        }
+            .col {
+                max-width: 250px;
+                aspect-ratio: 2;
+                margin: 10px 0;
+            }
     }
     }
 

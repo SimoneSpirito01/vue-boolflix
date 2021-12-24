@@ -3,7 +3,7 @@
 
         <div v-if="hover == false" class="poster">
 
-            <img v-if="content.poster_path != null" :src="`https://image.tmdb.org/t/p/w342/${content.poster_path}`" :alt="content.title">
+            <img v-if="content.backdrop_path != null" :src="`https://image.tmdb.org/t/p/w342/${content.backdrop_path}`" :alt="content.title">
             <div v-else class="d-flex justify-content-center align-items-center h-100" >
                 {{content.title}}{{content.name}}
             </div>
