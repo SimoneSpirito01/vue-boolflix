@@ -67,7 +67,8 @@ export default {
     data(){
         return {
             hover: false,
-            actHover: false
+            actHover: false,
+            hoverTime: 0
         }
     },
     methods: {
@@ -87,13 +88,21 @@ export default {
         },
         hoverCard(){
             if (this.hover == false){
+                this.hoverTime = 0;
                 this.actHover = true;
+                setInterval(() => {
+                    if (this.actHover) {
+                        this.hoverTime++;
+                    }
+                }, 10);
                 setTimeout(() => {
-                    if (this.actHover) this.hover = true;
+                    console.log(this.hoverTime);
+                    if (this.hoverTime >= 40) this.hover = true;
                 }, 400);
             }
         },
         leaveCard(){
+            this.hoverTime = 0;
             this.hover = false;
             this.actHover = false;
         },
