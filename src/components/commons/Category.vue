@@ -52,6 +52,10 @@ export default {
     .category {
         margin-top: 25px;
 
+        h2 {
+            font-size: 25px;
+        }
+
         .row {
 
             .col {

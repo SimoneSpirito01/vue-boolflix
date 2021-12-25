@@ -1,9 +1,10 @@
 <template>
     <div class="query">
-        <label for="cerca"></label>
-        <input @keyup.enter="doQuery()
-        " v-model="dataShared.searchQuery" type="search" id="cerca">
-        <input @click="doQuery()" type="submit" value="Cerca">
+        <form action="#" class="d-flex ">
+            <input @keyup.enter="doQuery()
+            " v-model="dataShared.searchQuery" type="search" id="cerca">
+            <input @click.prevent="doQuery()" type="submit" value="Cerca">
+        </form>
     </div>
 </template>
 
@@ -71,5 +72,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+    .query {
+
+        form {
+            height: 27px;
+
+            input {
+                height: 100%;
+                border: none;
+                background-color: white;
+            }
+
+            input:first-child {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                padding-left: 6px;
+            }
+
+            input:last-child {
+                width: 50px;
+                font-size: 14px;
+                border-left: 1px solid lightgray;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                text-align: center;
+                user-select: none;
+
+            }
+        }
+
+
+
+        
+    }
 
 </style>

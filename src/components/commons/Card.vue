@@ -96,7 +96,6 @@ export default {
                     }
                 }, 10);
                 setTimeout(() => {
-                    console.log(this.hoverTime);
                     if (this.hoverTime >= 40) this.hover = true;
                 }, 400);
             }
