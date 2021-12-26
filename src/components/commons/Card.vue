@@ -88,16 +88,22 @@ export default {
         },
         hoverCard(){
             if (this.hover == false){
-                this.hoverTime = 0;
-                this.actHover = true;
-                setInterval(() => {
-                    if (this.actHover) {
-                        this.hoverTime++;
-                    }
-                }, 10);
-                setTimeout(() => {
-                    if (this.hoverTime >= 40) this.hover = true;
-                }, 400);
+                if (this.actHover == false){
+                    this.actHover = true;
+                    const addTime = setInterval(() => {
+                        if (this.actHover) {
+                            this.hoverTime++;
+                            if (this.hoverTime >= 4) {
+                                this.hover = true;
+                                clearInterval(addTime);
+                            }
+                        } else {
+                            clearInterval(addTime);
+                        }
+                    }, 100);
+                } else {
+                    this.hoverTime = 0;
+                }
             }
         },
         leaveCard(){
