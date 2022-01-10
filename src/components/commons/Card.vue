@@ -27,7 +27,7 @@
                     <span>{{genre}}</span>
                 </div>
             </div>
-            <div v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</div>
+            <div v-if="content.overview != ''"><strong>Trama:</strong> {{content.overview}}</div>
             <div class="text-uppercase d-flex align-items-center"><span class="me-2 fs-3" v-html="getFlag(content.original_language)"></span>{{content.original_language}}</div>
 
         </div>
@@ -49,7 +49,7 @@
                     <span>{{genre}}</span>
                 </div>
             </div>
-            <div v-if="content.overview != ''"><strong>Overview:</strong> {{content.overview}}</div>
+            <div v-if="content.overview != ''"><strong>Trama:</strong> {{content.overview}}</div>
             <div class="text-uppercase d-flex align-items-center"><span class="me-2 fs-3" v-html="getFlag(content.original_language)"></span>{{content.original_language}}</div>
             
         </div>
@@ -156,6 +156,28 @@ export default {
             overflow-x: auto;
             padding: 10px 0;
             margin: 0 auto;
+            
+            &::-webkit-scrollbar-track
+                {
+                    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                    border-radius: 10px;
+                    background-color: #F5F5F5;
+                    padding: 0 2px;
+                }
+
+            &::-webkit-scrollbar
+                {
+                    width: 6px;
+                }
+
+            &::-webkit-scrollbar-thumb
+                {
+                    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                    border-radius: 10px;
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                    background-color: #555;
+                }
 
             > div {
                 margin: 0;

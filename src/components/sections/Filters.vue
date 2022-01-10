@@ -127,4 +127,10 @@ export default {
         }
     }
 
+@media (max-width: 576px) {
+    .filter {
+        font-size: 9px;
+    }
+}
+
 </style>

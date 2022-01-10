@@ -75,4 +75,15 @@ export default {
         }
     }
 
+    @media (max-width: 576px) {
+        header {
+            height: 70px;
+            padding: 0 10px;
+
+            .left {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+
 </style>
