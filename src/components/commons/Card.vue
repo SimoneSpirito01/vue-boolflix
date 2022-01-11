@@ -1,5 +1,5 @@
 <template>
-    <div @mouseover="hoverCard" @mouseleave="leaveCard" class="mycard">
+    <div @mouseover="hoverCard" @mouseleave="leaveCard" class="mycard" :class="{ active: hover }">
 
         <div v-if="hover == false" class="poster">
 
@@ -126,12 +126,11 @@ export default {
         border-radius: 10px;
         background-color: #141414;
        
-        &:hover {
+        &.active {
             transform: scale(1.5);
             position: relative;
             z-index: 10;
             font-size: 10px;
-            transition-delay: 0.4s;
 
             .info {
                 font-size: 10px;
