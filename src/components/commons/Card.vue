@@ -1,7 +1,7 @@
 <template>
-    <div @mouseover="hoverCard" @mouseleave="leaveCard" class="mycard" :class="{ active: hover }">
+    <div @mouseover="hoverCard" @mouseleave="leaveCard" class="mycard" :class="{ active: content.hover }">
 
-        <div v-if="hover == false" class="poster">
+        <div v-if="content.hover == false" class="poster">
 
             <img v-if="content.backdrop_path != null" :src="`https://image.tmdb.org/t/p/w342/${content.backdrop_path}`" :alt="content.title">
             <div v-else class="d-flex justify-content-center align-items-center h-100" >
@@ -62,11 +62,11 @@
 export default {
     name: 'Card',
     props: {
-        content: Object
+        content: Object,
+        array: Array
     },
     data(){
         return {
-            hover: false,
             actHover: false,
             hoverTime: 0
         }
@@ -87,14 +87,21 @@ export default {
             }
         },
         hoverCard(){
-            if (this.hover == false){
+            console.log('okk')
+            if (this.content.hover == false){
+                console.log('ok')
                 if (this.actHover == false){
                     this.actHover = true;
+                    
                     const addTime = setInterval(() => {
                         if (this.actHover) {
                             this.hoverTime++;
                             if (this.hoverTime >= 4) {
-                                this.hover = true;
+                                this.array.forEach(element => {
+                                    element.hover = false;
+                                    console.log(element);
+                                });
+                                this.content.hover = true;
                                 clearInterval(addTime);
                             }
                         } else {
@@ -108,7 +115,7 @@ export default {
         },
         leaveCard(){
             this.hoverTime = 0;
-            this.hover = false;
+            this.content.hover = false;
             this.actHover = false;
         },
     }

@@ -4,7 +4,7 @@
         <h2>{{title}}</h2>
         <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 justify-content-center justify-content-md-start">
             <div v-for="(content, i) in filteredContents" :key="i" class="col">
-                <Card :content="content"/>
+                <Card :content="content" :array="contents"/>
             </div>
         </div>
     </div>
@@ -27,6 +27,20 @@ export default {
     data(){
         return {
             dataShared
+        }
+    },
+    watch: {
+        contents: function(){
+            if (dataShared.load == false){
+                console.log('not')
+                this.contents.forEach(element => {
+                if (element.hover == true){
+                    dataShared.load = true;
+                }
+                element.hover = false;
+                console.log(element)
+                });
+            }
         }
     },
     computed: {
