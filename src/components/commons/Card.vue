@@ -5,7 +5,7 @@
     class="mycard"
     :class="{ active: hover }"
   >
-    <div v-if="hover == false" class="poster">
+    <div v-if="hover == false" class="poster_card">
       <img
         class="background"
         v-if="content.backdrop_path != null"
