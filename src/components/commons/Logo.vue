@@ -1,6 +1,6 @@
 <template>
     <div class="logo">
-        <img src="https://fontmeme.com/permalink/211220/5dd131f34650ee16d14564dc7664eaec.png" alt="boolzip">
+        <img src="../../assets/img/boolflix.png" alt="boolzip">
     </div>
 </template>
 

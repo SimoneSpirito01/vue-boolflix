@@ -112,6 +112,9 @@ export default {
 
         .filter {
             margin: 10px 5px;
+            border: none;
+            background-color: #0b0b0b;
+            color: #bdbdbd;
 
             &:focus {
                 background-color: #6c757d;

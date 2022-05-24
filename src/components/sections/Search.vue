@@ -81,23 +81,28 @@ export default {
             input {
                 height: 100%;
                 border: none;
-                background-color: white;
+                background: none;
+                border: 2px solid #bdbdbd;
+                outline: none;
             }
 
             input:first-child {
                 border-top-left-radius: 5px;
                 border-bottom-left-radius: 5px;
                 padding-left: 6px;
+                color: #bdbdbd;
+
             }
 
             input:last-child {
                 width: 50px;
                 font-size: 14px;
-                border-left: 1px solid lightgray;
+                border-left: 0px solid lightgray;
                 border-top-right-radius: 5px;
                 border-bottom-right-radius: 5px;
                 text-align: center;
                 user-select: none;
+                color: #bdbdbd;
 
             }
         }
